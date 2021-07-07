@@ -10,14 +10,11 @@ def normal_gridTraveler(row,column):
 	rightstep= normal_gridTraveler(row,column-1) #moving right side of the grid
 	return downstep+rightstep   #For find total possible steps
 
-#Dynamic programming approach
 def DP_gridTraveler(row,column,memo={}) :  #memo is a dictionary ,this will store an intermediate subproblems
 	key = str(row)+","+str(column)   #Unique key for memo
 	rkey= str(column)+","+str(row)	 #Unique key for memo  ,gridTraveler(n,m) = gridTraveler(m,n)
-	if key in memo:					 #Check if already DP_gridTraveler(n,m) solved or not
+	if key in memo or rkey in memo:  #Check if already DP_gridTraveler(n,m) solved or not
 		return memo[key]			 #If true return solved answer
-	if rkey in memo:			
-		return memo[rkey]
 	if row == 1 and column == 1:	#Final grid
 		return 1
 	if row == 0 or column == 0:		#Out of grid / Further steps are not possible
